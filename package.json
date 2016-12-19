@@ -1,0 +1,25 @@
+{
+  "description": "A Marlin firmware emulator",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "marlin-emulator",
+  "version": "1.0.0",
+  "scripts": {},
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "babel-eslint": "^7.1.1",
+    "bluebird": "^3.4.6",
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-async-await": "0.0.0",
+    "eslint-plugin-babel": "^4.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2",
+    "eslint-plugin-react": "^6.8.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.2"
+  }
+}

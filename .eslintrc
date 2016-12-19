@@ -1,0 +1,10 @@
+{
+  "extends":"airbnb",
+  "parser": "babel-eslint",
+  "plugins": ["async-await"],
+  "rules": {
+    "async-await/space-after-async": 2,
+    "async-await/space-after-await": 2,
+    "no-param-reassign": [2, { "props": false }]
+  }
+}
