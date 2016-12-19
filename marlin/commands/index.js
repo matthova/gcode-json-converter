@@ -10,16 +10,16 @@ const commands = {
 
     gcodeObject.args.forEach((arg) => {
       if (arg.indexOf('X') !== -1) {
-        newPosition.x = parseInt(arg.split('X')[1], 10);
+        newPosition.x = Number(arg.split('X')[1], 10);
       }
       if (arg.indexOf('Y') !== -1) {
-        newPosition.y = parseInt(arg.split('Y')[1], 10);
+        newPosition.y = Number(arg.split('Y')[1], 10);
       }
       if (arg.indexOf('Z') !== -1) {
-        newPosition.z = parseInt(arg.split('Z')[1], 10);
+        newPosition.z = Number(arg.split('Z')[1], 10);
       }
       if (arg.indexOf('E') !== -1) {
-        newPosition.e = parseInt(arg.split('E')[1], 10);
+        newPosition.e = Number(arg.split('E')[1], 10);
       }
     });
 

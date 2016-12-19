@@ -8,25 +8,20 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "preLaunchTask": "ts",
-      "program": "${workspaceRoot}/dist/use-meaning.js",
-      "cwd": "${workspaceRoot}",
-      "outFiles": ["${workspaceRoot}/dist/**/*.js"],
-      "sourceMaps": true
+      "program": "${workspaceRoot}/index.js",
+      "cwd": "${workspaceRoot}"
     },
     {
       "type": "node",
       "request": "launch",
       "name": "Launch Test",
-      "preLaunchTask": "ts",
-      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
       "args": [
-        "${workspaceRoot}/dist/test/test.js",
+        "--harmony",
+        "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+        "${workspaceRoot}/test/test.js",
         "--no-timeouts"
       ],
-      "cwd": "${workspaceRoot}",
-      "outFiles": ["${workspaceRoot}/dist/**/*.js"],
-      "sourceMaps": true
+      "cwd": "${workspaceRoot}"
     },
     {
       "type": "node",
@@ -34,9 +29,7 @@
       "name": "Launch Dev",
       "preLaunchTask": "dev",
       "program": "${workspaceRoot}/dist/index.js",
-      "cwd": "${workspaceRoot}",
-      "outFiles": ["${workspaceRoot}/dist/**/*.js"],
-      "sourceMaps": true
+      "cwd": "${workspaceRoot}"
     }
   ]
 }

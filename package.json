@@ -8,7 +8,7 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-eslint": "^7.1.1",
-    "bluebird": "^3.4.6",
+    "chai": "^3.5.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-async-await": "0.0.0",
@@ -20,6 +20,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "lodash": "^4.17.2"
   }
 }
