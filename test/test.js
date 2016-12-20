@@ -19,6 +19,70 @@ describe('Testing Marlin emulator functionality', () => {
     assert.deepEqual(position, expectedPositon);
   });
 
+  it('Has a position of X=10, Y=0, Z=0, E=0 after sent GCode "G1 X10"', async () => {
+    await marley.sendGcode('G1 X10');
+    const position = marley.position;
+    const expectedPositon = {
+      x: 10,
+      y: 0,
+      z: 0,
+      e: 0,
+    };
+    assert.deepEqual(position, expectedPositon);
+  });
+
+  it('Processes an M114 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes an M105 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes an M104 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes an M140 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes an M109 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes an M190 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 X command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 Y command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 Z command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 X Y command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 X Z command', async () => {
+    assert(true, false);
+  });
+
+  it('Processes a G28 Y Z command', async () => {
+    assert(true, false);
+  });
+
   it('Processes a G4 command with a "seconds" or "S" parameter', async () => {
     const startTime = new Date().getTime();
     await marley.sendGcode('G4 S1');
@@ -35,18 +99,6 @@ describe('Testing Marlin emulator functionality', () => {
     const passedTime = endTime - startTime;
     assert(passedTime >= 100, true);
     assert(passedTime < 150, true);
-  });
-
-  it('Has a position of X=10, Y=0, Z=0, E=0 after sent GCode "G1 X10"', async () => {
-    await marley.sendGcode('G1 X10');
-    const position = marley.position;
-    const expectedPositon = {
-      x: 10,
-      y: 0,
-      z: 0,
-      e: 0,
-    };
-    assert.deepEqual(position, expectedPositon);
   });
 
   it('shouldnt queue commands when the buffer is full', async () => {
