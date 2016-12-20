@@ -3,7 +3,6 @@ const delay = require('bluebird').delay;
 
 const commands = require('./commands');
 
-
 class Marlin {
   constructor() {
     this.absoluteMode = true;
