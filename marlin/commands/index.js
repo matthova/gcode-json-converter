@@ -1,3 +1,5 @@
+const delay = require('bluebird').delay;
+
 const commands = {
   G1: (marlin, gcodeObject) => {
     // Need to account for relative or absolute mode
@@ -25,7 +27,28 @@ const commands = {
 
     marlin.position = newPosition;
 
-    return 'ok';
+    return `${gcodeObject.gcode}: ok`;
+  },
+  G4: async (marlin, gcodeObject) => {
+    while (marlin.bufferLength > 0) {
+      await delay(10);
+    }
+    let delayAmount = 0;
+    for (const arg of gcodeObject.args) {
+      if (arg.indexOf('S') !== -1) {
+        delayAmount = parseInt(arg.split('S')[1], 10) * 1000;
+      } else if (arg.indexOf('P') !== -1) {
+        delayAmount = parseInt(arg.split('P')[1], 10);
+      }
+    }
+    await delay(delayAmount);
+    return `${gcodeObject.gcode}: ok`;
+  },
+  M400: async (marlin, gcodeObject) => {
+    while (marlin.bufferLength > 0) {
+      await delay(10);
+    }
+    return `${gcodeObject.gcode}: ok`;
   },
 };
 

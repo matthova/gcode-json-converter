@@ -4,7 +4,9 @@
   "main": "index.js",
   "name": "marlin-emulator",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "test": "node --harmony node_modules/mocha/bin/_mocha test/test.js --no-timeouts"
+  },
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-eslint": "^7.1.1",
@@ -21,6 +23,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.6",
+    "line-by-line": "^0.1.5",
     "lodash": "^4.17.2"
   }
 }

@@ -76,22 +76,6 @@ class Marlin {
             // Need to replace generic two second delay with a properly calculated delay, based on the current feedrate
             break;
           }
-          case 'G4': {
-            let delayAmount = 0;
-            gcodeObject.args.forEach((arg) => {
-              if (gcodeObject.indexOf('S') !== -1) {
-                delayAmount = parseInt(arg.split('S')[1], 10) * 1000;
-              }
-              if (arg.indexOf('P') !== -1) {
-                delayAmount = parseInt(arg.split('P')[1], 10);
-              }
-            });
-            await delay(delayAmount);
-            break;
-          }
-          case 'M400': {
-            break;
-          }
           default: {
             break;
           }
