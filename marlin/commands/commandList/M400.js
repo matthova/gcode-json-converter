@@ -1,8 +1,10 @@
 const delay = require('bluebird').delay;
 
-module.exports = async (marlin, gcodeObject) => {
-  while (marlin.bufferLength > 0) {
+const M400 = async (marlin, gcodeObject) => {
+  while (marlin.commandBuffer.length > 0) {
     await delay(10);
   }
-  return `${gcodeObject.gcode}: ok`;
+  return 'ok';
 };
+
+module.exports = M400;

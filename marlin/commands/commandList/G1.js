@@ -1,20 +1,23 @@
-module.exports = async (marlin, gcodeObject) => {
+const G1 = async (marlin, gcodeObject) => {
   // TODO: account for relative or absolute mode
-
+  // TODO: add ability to read new feedrates
+  // TODO: add proper feedrate handling when moving multiple axes simultaneously
   gcodeObject.args.forEach((arg) => {
     if (arg.indexOf('X') !== -1) {
-      marlin.position.x.setpoint = Number(arg.split('X')[1], 10);
+      marlin.position.x.latest = Number(arg.split('X')[1], 10);
     }
     if (arg.indexOf('Y') !== -1) {
-      marlin.position.y.setpoint = Number(arg.split('Y')[1], 10);
+      marlin.position.y.latest = Number(arg.split('Y')[1], 10);
     }
     if (arg.indexOf('Z') !== -1) {
-      marlin.position.z.setpoint = Number(arg.split('Z')[1], 10);
+      marlin.position.z.latest = Number(arg.split('Z')[1], 10);
     }
     if (arg.indexOf('E') !== -1) {
-      marlin.position.e.setpoint = Number(arg.split('E')[1], 10);
+      marlin.position.e.latest = Number(arg.split('E')[1], 10);
     }
   });
 
-  return `${gcodeObject.gcode}: ok`;
+  return 'ok';
 };
+
+module.exports = G1;
