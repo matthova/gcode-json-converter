@@ -10,7 +10,6 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "babel-eslint": "^7.1.1",
-    "chai": "^3.5.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-async-await": "0.0.0",
@@ -23,6 +22,7 @@
   },
   "dependencies": {
     "bluebird": "^3.4.6",
+    "chai": "^3.5.0",
     "fs-promise": "^1.0.0",
     "line-by-line": "^0.1.5",
     "lodash": "^4.17.2"
