@@ -66,13 +66,13 @@ class Marlin {
         if (object.actual - object.setpoint < incrementAmount) {
           object.actual = object.setpoint;
         } else {
-          object.actual += incrementAmount;
+          object.actual -= incrementAmount;
         }
       } else {
         if (object.setpoint - object.actual < incrementAmount) {
           object.actual = object.setpoint;
         } else {
-          object.actual -= incrementAmount;
+          object.actual += incrementAmount;
         }
       }
     }

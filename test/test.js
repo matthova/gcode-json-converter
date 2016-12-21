@@ -72,7 +72,20 @@ describe('Testing Marlin emulator functionality', () => {
   });
 
   it('Processes an M104 command', async () => {
-    assert.equal(true, false);
+    const reply1 = await marley.sendGcode('M104 S200');
+    const expectedReply1 = 'ok';
+    assert.equal(reply1, expectedReply1);
+
+    const reply2 = await marley.sendGcode('M105');
+    const expectedReply2 = 'ok T:0.0 /200.0 B:0.0 /0.0';
+    assert.equal(reply2, expectedReply2);
+  });
+
+
+  it('Should raise temp', async () => {
+    await delay(2000);
+    const currentTemp = marley.temperature.t.actual;
+    assert.equal(currentTemp > 0, true);
   });
 
   it('Processes an M140 command', async () => {

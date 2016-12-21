@@ -3,7 +3,7 @@
 module.exports = async (marlin, gcodeObject) => {
   gcodeObject.args.forEach((arg) => {
     if (arg.indexOf('S') !== -1) {
-      const newTemp = Number(arg.split('s')[1], 10).toFixed(1);
+      const newTemp = parseFloat(Number(arg.split('S')[1]).toFixed(1));
       marlin.temperature.t.setpoint = newTemp;
     }
   });
