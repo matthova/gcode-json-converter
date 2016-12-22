@@ -129,7 +129,6 @@ class Marlin {
         // then (mm/s) * 1s / 10 one hundreths of a second
         // Since we are updating the position once every 100 milliseconds, this will be our increment value
         const incrementAmount = (value.feedrate / 60) / 10;
-        const before = Number(value.actual);
         this.increment(value, incrementAmount);
       }
 
