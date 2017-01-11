@@ -127,10 +127,6 @@ class Marlin extends EventEmitter {
 
   async simulateTemperature() {
     const incrementAmount = 10;
-    const blah = {
-      one: 1,
-      two: 2,
-    };
     _.entries(this.temperature).forEach(([key, value]) => {
       this.increment(value, incrementAmount);
     });
