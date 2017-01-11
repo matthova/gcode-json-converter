@@ -1,11 +1,13 @@
 const _ = require('lodash');
 const delay = require('bluebird').delay;
 const equal = require('deep-equal');
+const EventEmitter = require('events');
 
 const commands = require('./commands');
 
-class Marlin {
+class Marlin extends EventEmitter {
   constructor() {
+    super();
     this.mode = {
       absolute: true,
       blocking: false,
@@ -25,7 +27,13 @@ class Marlin {
       },
     };
 
-    // Position refers to the position driven by the provided commands
+    // setpoint    - The position that the motion buffer is moving towards.
+    //               This represents the destination of the first command in line to be executed
+    // actual      - The actual gantry position
+    // latest      - The final known position,
+    //               aka once the entire motion buffer is consumed, where the gantry will be located
+    // feedrate    - The rate of motion in mm / second
+    // maxFeedrate - Limit the feedrate to be below a certain value
     this.position = {
       x: {
         setpoint: 0,
@@ -57,12 +65,13 @@ class Marlin {
       },
     };
 
+    // We're updating the position and the temperature 10 times per second.
     setInterval(this.simulateMotionBuffer.bind(this), 100);
     setInterval(this.simulateTemperature.bind(this), 100);
   }
 
   async sendGcode(gcode) {
-    // Wait until there is space in the buffer
+    // Don't send gcode until there is space in the buffer
     while (this.commandBuffer.length > this.commandBufferMaxLength || this.mode.blocking) {
       await delay(10);
     }
@@ -70,6 +79,7 @@ class Marlin {
     const gcodeObject = this.parseGcode(gcode);
     this.commandBuffer.push(gcodeObject);
     const gcodeReply = await this.processCommand(gcodeObject);
+    this.emit('reply', gcodeReply);
 
     return gcodeReply;
   }
@@ -117,20 +127,25 @@ class Marlin {
 
   async simulateTemperature() {
     const incrementAmount = 10;
-    for (const [key, value] of _.toPairs(this.temperature)) {
+    const blah = {
+      one: 1,
+      two: 2,
+    };
+    _.entries(this.temperature).forEach(([key, value]) => {
       this.increment(value, incrementAmount);
-    }
+    });
   }
 
   simulateMotionBuffer() {
     if (this.commandBuffer.length > 0) {
-      for (const [key, value] of _.toPairs(this.position)) {
+      _.entries(this.position).forEach(([key, value]) => {
         // Turning the feedrate (mm/min) into (mm/s)
         // then (mm/s) * 1s / 10 one hundreths of a second
-        // Since we are updating the position once every 100 milliseconds, this will be our increment value
+        // Since we are updating the position once every 100 milliseconds,
+        // this will be our increment value
         const incrementAmount = (value.feedrate / 60) / 10;
         this.increment(value, incrementAmount);
-      }
+      });
 
       // check the first command
       // once the command is completed, then remove it from the buffer
@@ -141,14 +156,14 @@ class Marlin {
   updatePositionSetpoints(gcodeObject) {
     const axisArray = ['X', 'Y', 'Z', 'E'];
 
-    for (const arg of gcodeObject.args) {
-      for (const axis of axisArray) {
+    gcodeObject.args.forEach((arg) => {
+      axisArray.forEach((axis) => {
         if (arg.indexOf(axis) !== -1) {
           const axisPosition = Number(arg.split(';')[0].split(axis)[1].split(' ')[0], 10);
           this.position[axis.toLowerCase()].setpoint = axisPosition;
         }
-      }
-    }
+      });
+    });
   }
 
   processBufferCommand(gcodeObject) {
