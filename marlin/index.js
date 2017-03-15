@@ -8,6 +8,11 @@ const commands = require('./commands');
 class Marlin extends EventEmitter {
   constructor() {
     super();
+
+    this.state = {
+      open: false,
+    };
+
     this.mode = {
       absolute: true,
       blocking: false,
@@ -70,18 +75,35 @@ class Marlin extends EventEmitter {
     setInterval(this.simulateTemperature.bind(this), 100);
   }
 
-  async sendGcode(gcode) {
-    // Don't send gcode until there is space in the buffer
-    while (this.commandBuffer.length > this.commandBufferMaxLength || this.mode.blocking) {
-      await delay(10);
+  async open() {
+    if (!this.state.open) {
+      await delay(100);
+      this.state.open = true;
     }
+  }
 
-    const gcodeObject = this.parseGcode(gcode);
-    this.commandBuffer.push(gcodeObject);
-    const gcodeReply = await this.processCommand(gcodeObject);
-    this.emit('reply', gcodeReply);
+  async close() {
+    if (this.state.open) {
+      await delay(100);
+      this.state.open = false;
+    }
+  }
 
-    return gcodeReply;
+  async sendGcode(gcode) {
+    if (this.state.open) {
+      // Don't send gcode until there is space in the buffer
+      while (this.commandBuffer.length > this.commandBufferMaxLength || this.mode.blocking) {
+        await delay(10);
+      }
+
+      const gcodeObject = this.parseGcode(gcode);
+      this.commandBuffer.push(gcodeObject);
+      const gcodeReply = await this.processCommand(gcodeObject);
+      this.emit('reply', gcodeReply);
+
+      return gcodeReply;
+    }
+    return 'Cannot send gcode. Port is not open';
   }
 
   parseGcode(gcode) {

@@ -9,6 +9,13 @@ const Marlin = require('../');
 describe('Testing Marlin emulator functionality', () => {
   const marley = new Marlin();
 
+  it('Has to be opened before it can process anything', async () => {
+    const reply = await marley.sendGcode('M114');
+    await marley.open();
+    const reply2 = await marley.sendGcode('M114');
+    console.log('reply!', reply, reply2);
+  });
+
   it('Has an initial position of X=0, Y=0, Z=0, E=0', async () => {
     const position = {
       x: marley.position.x.setpoint,
