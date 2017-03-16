@@ -1,4 +1,4 @@
-### Motion Controller Emulator
+### Motion Controller Emulator ![motion controller emulator build status](https://travis-ci.org/Autodesk/motion-controller-emulator.svg?branch=master)
 
 The purpose of this module is to allow for proper testing of code that utilizes gcode-based motion control hardware. We're specifically focused on emulating Marlin firmware, however this software's purpose can be expanded more generally as well.  
 
