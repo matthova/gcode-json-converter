@@ -1,4 +1,4 @@
-# Contributing to marlin-emulator
+# Contributing to motion-controller-emulator
 
 Contributions to this project are encouraged! All you need is a Github account to contribute.
 
@@ -18,9 +18,9 @@ Admins will respond quickly, and may request changes, on the pull request.
 
 Here are some ideas:
 
-**Add a gcode command** - The list of supported commands can be found in marlin/commands. Although originally designed for basic functionality, support of additional GCode commands is welcomed.
+**Add a gcode command** - The list of supported commands can be found in lib/commands. Although originally designed for basic functionality, support of additional GCode commands is welcomed.
 
-**Contribute unit tests** - test that marlin-emulator functions work correctly in a variety of situations, and that they report errors when appropriate
+**Contribute unit tests** - test that motion-controller-emulator functions work correctly in a variety of situations, and that they report errors when appropriate
 
 **Bug fixes:** Found a typo in the code? Found that a function fails under certain conditions? Know how to fix it? Great! Go for it. Please [open an issue]() so that we know you're working on it, and submit a pull request when you're ready.
 
@@ -79,7 +79,7 @@ Before you submit your pull request consider the following guidelines:
     git push origin my-fix-branch
     ```
 
-* In GitHub, send a pull request to `marlin-emulator:master`.
+* In GitHub, send a pull request to `motion-controller-emulator:master`.
 
 ### Coding Rules
 
@@ -88,4 +88,4 @@ Before you submit your pull request consider the following guidelines:
 
 ## Becoming a contributor
 
-Frequent contributors can email the maintainers at marlin-emulator.maintainers@autodesk.com to become a project administrator, at the approval of existing project admins.
+Frequent contributors can email the maintainers at motion-controller-emulator.maintainers@autodesk.com to become a project administrator, at the approval of existing project admins.

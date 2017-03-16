@@ -1,9 +1,9 @@
 {
-  "description": "A Marlin firmware emulator",
-  "license": "MIT",
+  "description": "A motion controller emulator",
+  "license": "Apache 2.0",
   "main": "index.js",
-  "name": "marlin-emulator",
-  "version": "1.0.0",
+  "name": "motion-controller-emulator",
+  "version": "0.0.1",
   "scripts": {
     "test": "node --harmony node_modules/mocha/bin/_mocha test/test.js --no-timeouts"
   },

@@ -1,13 +1,22 @@
-### Marlin emulator
+### Motion Controller Emulator
 
-The purpose of this module is to allow for proper testing of code that utilizes Marlin-based firmware.
+The purpose of this module is to allow for proper testing of code that utilizes gcode-based motion control hardware. We're specifically focused on emulating Marlin firmware, however this software's purpose can be expanded more generally as well.  
 
-Accurate replication of timing is not necessarily possible, however the goal is for the module to as closely as possible, replicate the behavior of Marlin.
+``` js
+const MCE = require('motion-controller-emulator');
 
+async function example() {
+  // Create a new MCE instance
+  const bot = new MCE();
 
-Milestones:
-    Support M114
-    Support G28
-    Support M105
-    Support G1
-    Support G4 / M400
+  // Open the connection
+  await bot.open()
+  
+  const positionReply = await bot.sendGcode('M114');
+  // Position Reply is
+  // ok X:0.00 Y:0.00 Z:0.00 E:0.00 Count X:0.00 Y:0.00 Z:0.00 E:0.00 
+}
+
+example();
+```
+

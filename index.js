@@ -1,3 +1,3 @@
-const Marlin = require('./marlin');
+const MCE = require('./lib');
 
-module.exports = Marlin;
+module.exports = MCE;
