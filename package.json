@@ -5,7 +5,7 @@
   "name": "motion-controller-emulator",
   "version": "0.0.1",
   "scripts": {
-    "test": "node --harmony node_modules/mocha/bin/_mocha test/test.js --no-timeouts"
+    "test": "node node_modules/mocha/bin/_mocha test/test.js --no-timeouts"
   },
   "devDependencies": {
     "assert": "^1.4.1",
