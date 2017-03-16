@@ -2,6 +2,11 @@
 
 The purpose of this module is to allow for proper testing of code that utilizes gcode-based motion control hardware. We're specifically focused on emulating Marlin firmware, however this software's purpose can be expanded more generally as well.  
 
+
+### Contributing
+Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our guidelines for [contributions](./CONTRIBUTING.md).
+
+
 ``` js
 const MCE = require('motion-controller-emulator');
 
