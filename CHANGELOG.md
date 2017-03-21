@@ -9,3 +9,6 @@
 
 ## 0.0.3 (2017-21-17)
   Added support for M42 and M43
+  
+## 0.1.0 (2017-21-17)
+  Using a dedicated gcode object parser library
