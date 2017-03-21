@@ -1,4 +1,4 @@
-### GCode JSON Converter ![gcode-json-converter build status](https://travis-ci.org/MachineCollaborationUtility/GCode-JSON-converter.svg?branch=master)
+### GCode JSON Converter ![gcode-json-converter build status](https://travis-ci.org/MachineCollaborationUtility/gcode-json-converter.svg?branch=master)
 
 A basic tool for converting GCode into a JSON object and GCode JSON objects back into gcode.
 
