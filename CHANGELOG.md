@@ -6,3 +6,6 @@
 ## 0.0.2 (2017-21-17)
   Updated expected node to v7.6 or greater
   Added TravisCI badge and node 7 testing dependency
+
+## 0.0.3 (2017-21-17)
+  Added support for M42 and M43
