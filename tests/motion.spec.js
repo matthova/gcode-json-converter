@@ -48,14 +48,14 @@ describe('Testing Motion Controller Emulator functionality', () => {
       e: bot.position.e.latest,
     };
 
-    const expectedPositon = {
+    const expectedPosition = {
       x: 10,
       y: 0,
       z: 0,
       e: 0,
     };
 
-    assert.deepEqual(position, expectedPositon);
+    assert.deepEqual(position, expectedPosition);
   });
 
   it('Processes an M114 command after a move', async () => {
@@ -325,11 +325,12 @@ describe('Testing Motion Controller Emulator functionality', () => {
     assert.isAtLeast(passedTime, 100);
   });
 
-  it('should be able to consume a small gcode file', (done) => {
+  it('should be able to consume a small gcode file', function (done) {
+    this.timeout(20000);
     // The file provided is a 1mm cube, sliced for a Printrbot Play
 
     // declare the gcode file path
-    const filePath = path.join(__dirname, 'cube.gcode');
+    const filePath = path.join(process.env.PWD, 'tests/cube.gcode');
     // instantiate the line reader
     const lr = new LineByLineReader(filePath);
 
@@ -340,7 +341,6 @@ describe('Testing Motion Controller Emulator functionality', () => {
         return;
       }
       lr.pause();
-
       const reply = await bot.sendGcode(line);
       lr.resume();
     });
