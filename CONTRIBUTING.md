@@ -1,4 +1,4 @@
-# Contributing to motion-controller-emulator
+# Contributing to gcode-json-converter
 
 Contributions to this project are encouraged! All you need is a Github account to contribute.
 
@@ -20,7 +20,7 @@ Here are some ideas:
 
 **Add a gcode command** - The list of supported commands can be found in lib/commands. Although originally designed for basic functionality, support of additional GCode commands is welcomed.
 
-**Contribute unit tests** - test that motion-controller-emulator functions work correctly in a variety of situations, and that they report errors when appropriate
+**Contribute unit tests** - test that gcode-json-converter functions work correctly in a variety of situations, and that they report errors when appropriate
 
 **Bug fixes:** Found a typo in the code? Found that a function fails under certain conditions? Know how to fix it? Great! Go for it. Please [open an issue]() so that we know you're working on it, and submit a pull request when you're ready.
 
@@ -79,13 +79,9 @@ Before you submit your pull request consider the following guidelines:
     git push origin my-fix-branch
     ```
 
-* In GitHub, send a pull request to `motion-controller-emulator:master`.
+* In GitHub, send a pull request to `gcode-json-converter:master`.
 
 ### Coding Rules
 
 * Please maintain a code style similar to that of the rest of the project, adhering the the styleguide (`.eslintrc`)
 * Please document all public methods using JSDoc format comments.
-
-## Becoming a contributor
-
-Frequent contributors can email the maintainers at motion-controller-emulator.maintainers@autodesk.com to become a project administrator, at the approval of existing project admins.

@@ -1,27 +1,28 @@
-### Motion Controller Emulator ![motion controller emulator build status](https://travis-ci.org/Autodesk/motion-controller-emulator.svg?branch=master)
+### GCode JSON Converter ![gcode-json-converter build status](https://travis-ci.org/MachineCollaborationUtility/GCode-JSON-converter.svg?branch=master)
 
-The purpose of this module is to allow for proper testing of code that utilizes gcode-based motion control hardware. We're specifically focused on emulating Marlin firmware, however this software's purpose can be expanded more generally as well.  
-
+A basic tool for converting GCode into a JSON object and GCode JSON objects back into gcode.
 
 ### Contributing
 Want to file a bug, contribute some code, or improve documentation? Excellent! Read up on our guidelines for [contributions](./CONTRIBUTING.md).
 
 
 ``` js
-const MCE = require('motion-controller-emulator');
+const gcodeToObject = require('gcode-json-converter').gcodeToObject;
+const objectToGcode = require('gcode-json-converter').objectToGcode;
 
-async function example() {
-  // Create a new MCE instance
-  const bot = new MCE();
+// Convert a line of gcode into an object
+const g1Result = gcodeToObject('G1 X -0.1; soooo cool');
+const objectResult = {
+  command: 'G1',
+  args: {
+    x: -0.1,
+  },
+  comment: ' soooo cool',
+};
 
-  // Open the connection
-  await bot.open()
-  
-  const positionReply = await bot.sendGcode('M114');
-  // Position Reply is
-  // ok X:0.00 Y:0.00 Z:0.00 E:0.00 Count X:0.00 Y:0.00 Z:0.00 E:0.00 
-}
+// Convert a gcode object back into a line of gcode
+const backToGcode = objectToGcode(g1Result);
+const stringResult = 'G1 X-0.1; so cooool'
 
-example();
 ```
 
