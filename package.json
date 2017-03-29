@@ -5,7 +5,8 @@
   "name": "gcode-json-converter",
   "version": "0.0.1",
   "scripts": {
-    "test": "mocha **/*.spec.js"
+    "test": "mocha **/*.spec.js",
+    "test-dev": "node node_modules/.bin/nodemon node_modules/.bin/mocha **/*.spec.js"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -24,9 +25,10 @@
     "bluebird": "^3.4.6",
     "chai": "^3.5.0",
     "deep-equal": "^1.0.1",
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.2",
+    "to-case": "^2.0.0"
   },
-  "engines" : {
-    "node" : ">=7.6"
+  "engines": {
+    "node": ">=7.6"
   }
 }
