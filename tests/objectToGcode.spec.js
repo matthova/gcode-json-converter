@@ -98,6 +98,12 @@ describe('GCode Parser', () => {
     assert.equal(gcode, 'G1 X1.23 Y4.56 Z7.89; comment string');
   });
 
+  it('should remove comments if the arg "comment" is set to false', () => {
+    const gcodeObject = gcodeToObject('G1 X1.23 Y4.56 Z7.89; comment string');
+    const gcode = objectToGcode(gcodeObject, { comment: false });
+    assert.equal(gcode, 'G1 X1.23 Y4.56 Z7.89');
+  });
+
   it('should be able to process comments with a semicolon in them', () => {
     const gcodeObject = gcodeToObject('G1 X1.23 Y4.56 Z7.89; comment string; more comment');
     const gcode = objectToGcode(gcodeObject);
