@@ -25,7 +25,7 @@
       "args": [
         "--harmony",
         "${workspaceRoot}/node_modules/mocha/bin/_mocha",
-        "${workspaceRoot}/test/test.js",
+        "${workspaceRoot}/**/*.spec.js",
         "--no-timeouts"
       ],
       "cwd": "${workspaceRoot}"
