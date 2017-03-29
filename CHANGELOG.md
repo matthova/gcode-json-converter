@@ -5,3 +5,6 @@
 
 ## v0.1.0 (2017-03-29)
   Added metacomment parsing
+
+## v0.2.0 (2017-03-29)
+  Added ability to pass a flag to disable comments from being appended to a line of gcode
