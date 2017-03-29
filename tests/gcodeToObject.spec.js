@@ -19,6 +19,10 @@ describe('Object To GCode functionality', () => {
       command: 'M114',
       args: {},
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -31,6 +35,10 @@ describe('Object To GCode functionality', () => {
       command: 'G90',
       args: {},
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -43,6 +51,10 @@ describe('Object To GCode functionality', () => {
       command: 'G90',
       args: {},
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -61,6 +73,10 @@ describe('Object To GCode functionality', () => {
         y: true,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result1, expected);
@@ -78,6 +94,10 @@ describe('Object To GCode functionality', () => {
         s: 0,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -93,6 +113,10 @@ describe('Object To GCode functionality', () => {
         t: 0,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -107,6 +131,10 @@ describe('Object To GCode functionality', () => {
         s: 0,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -130,9 +158,13 @@ describe('Object To GCode functionality', () => {
         x: 1,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
-    g1X1Array.forEach(g1Command => {
+    g1X1Array.forEach((g1Command) => {
       const g1Result = gcodeToObject(g1Command);
       assert.deepEqual(g1Result, expected);
     });
@@ -143,7 +175,7 @@ describe('Object To GCode functionality', () => {
       'G1X-1',
       'G1 X-1',
       'G1X -1',
-      'G1 X -1'
+      'G1 X -1',
     ];
 
     const expected = {
@@ -152,9 +184,13 @@ describe('Object To GCode functionality', () => {
         x: -1,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
-    g1X1Array.forEach(g1Command => {
+    g1X1Array.forEach((g1Command) => {
       const g1Result = gcodeToObject(g1Command);
       assert.deepEqual(g1Result, expected);
     });
@@ -178,9 +214,13 @@ describe('Object To GCode functionality', () => {
         x: -0.1,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
-    g1X1Array.forEach(g1Command => {
+    g1X1Array.forEach((g1Command) => {
       const g1Result = gcodeToObject(g1Command);
       assert.deepEqual(g1Result, expected);
     });
@@ -212,9 +252,13 @@ describe('Object To GCode functionality', () => {
         x: 0.1,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
-    g1X1Array.forEach(g1Command => {
+    g1X1Array.forEach((g1Command) => {
       const g1Result = gcodeToObject(g1Command);
       assert.deepEqual(g1Result, expected);
     });
@@ -230,6 +274,10 @@ describe('Object To GCode functionality', () => {
         t: 0,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -246,6 +294,10 @@ describe('Object To GCode functionality', () => {
         z: -1,
       },
       comment: undefined,
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -262,6 +314,10 @@ describe('Object To GCode functionality', () => {
         z: 7.89,
       },
       comment: ' comment string',
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
     };
 
     assert.deepEqual(result, expected);
@@ -278,6 +334,95 @@ describe('Object To GCode functionality', () => {
         z: 7.89,
       },
       comment: ' comment string; more comment',
+      metaComment: {
+        command: undefined,
+        args: {},
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  it('should be able to process a command with a checkpoint metacomment', () => {
+    const result = gcodeToObject('; <<<CHECKPOINT>>> bot1 : 19490');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: ' <<<CHECKPOINT>>> bot1 : 19490',
+      metaComment: {
+        command: 'checkpoint',
+        args: {
+          bot1: 19490,
+        },
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  it('should be able to process a command with a precursor metacomment', () => {
+    const result = gcodeToObject('  ; <<<PRECURSOR>>> bot2 : 19949');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: ' <<<PRECURSOR>>> bot2 : 19949',
+      metaComment: {
+        command: 'precursor',
+        args: {
+          bot2: 19949,
+        },
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  it('should be able to process a command with a dry metacomment', () => {
+    const result = gcodeToObject('; <<<DRY>>> TRUE');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: ' <<<DRY>>> TRUE',
+      metaComment: {
+        command: 'dry',
+        args: {
+          dry: true,
+        },
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  it('should be able to process a command with a layer metacomment', () => {
+    const result = gcodeToObject('; <<<LAYER>>> 1666');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: ' <<<LAYER>>> 1666',
+      metaComment: {
+        command: 'layer',
+        args: {
+          layer: 1666,
+        },
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  it('should be able to process a command with an x entry metacomment', () => {
+    const result = gcodeToObject('; <<<X ENTRY>>> 36.6829');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: ' <<<X ENTRY>>> 36.6829',
+      metaComment: {
+        command: 'xEntry',
+        args: {
+          xEntry: 36.6829,
+        },
+      },
     };
 
     assert.deepEqual(result, expected);
