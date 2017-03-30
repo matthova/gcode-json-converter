@@ -3,7 +3,7 @@
   "license": "Apache 2.0",
   "main": "index.js",
   "name": "gcode-json-converter",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/MachineCollaborationUtility/gcode-json-converter"

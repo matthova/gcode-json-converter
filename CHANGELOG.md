@@ -11,3 +11,6 @@
 
 ## v0.2.1 (2017-03-29)
   Fixed bug where numbers were properly parsed, when passed as values
+
+## v0.2.2 (2017-03-29)
+  Fixed bug in converting object to GCode. F values were set as E values

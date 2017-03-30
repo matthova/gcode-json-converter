@@ -49,6 +49,12 @@ describe('GCode Parser', () => {
     assert.equal(gcode, 'M104 S0');
   });
 
+  it('Should parse a "G1 X10 Y10 Z10 E100 F100" command object', () => {
+    const gcodeObject = gcodeToObject('G1 X10 Y10 Z10 E100 F100');
+    const gcode = objectToGcode(gcodeObject);
+    assert.equal(gcode, 'G1 X10 Y10 Z10 E100 F100');
+  });
+
   it('Should parse a "G1 X1" command object', () => {
     const gcodeObject = gcodeToObject('G1 X1');
     const gcode = objectToGcode(gcodeObject);
