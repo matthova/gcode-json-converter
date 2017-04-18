@@ -115,4 +115,10 @@ describe('GCode Parser', () => {
     const gcode = gcodeObject.toGcode();
     assert.equal(gcode, 'G1 X1.23 Y4.56 Z7.89; comment string; more comment');
   });
+
+  it('should round to the specified precision', () => {
+    const gcodeObject = gcodeToObject(`G1 X${Math.PI}`);
+    const gcode = gcodeObject.toGcode({ precision: 5 });
+    assert.equal(gcode, 'G1 X3.14159');
+  });
 });
