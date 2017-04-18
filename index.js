@@ -1,7 +1,7 @@
 const gcodeToObject = require('./lib/gcodeToObject');
 const objectToGcode = require('./lib/objectToGcode');
 
-module.exports = {
-  gcodeToObject,
-  objectToGcode,
-};
+gcodeToObject.gcodeToObject = gcodeToObject;
+gcodeToObject.objectToGcode = objectToGcode;
+
+module.exports = gcodeToObject;
