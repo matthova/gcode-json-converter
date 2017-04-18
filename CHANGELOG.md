@@ -19,3 +19,5 @@
   Renamed "metaComment" to "commentTag"
   Transformed GcodeObject into a class and appended the toGcode function to it
 
+## v1.0.1 (2017-04-18)
+  Exporting gcodeToObject as default
