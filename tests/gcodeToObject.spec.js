@@ -19,7 +19,7 @@ describe('Object To GCode functionality', () => {
       command: 'M114',
       args: {},
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -35,7 +35,7 @@ describe('Object To GCode functionality', () => {
       command: 'G90',
       args: {},
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -51,7 +51,7 @@ describe('Object To GCode functionality', () => {
       command: 'G90',
       args: {},
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -73,7 +73,7 @@ describe('Object To GCode functionality', () => {
         y: true,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -94,7 +94,7 @@ describe('Object To GCode functionality', () => {
         s: 0,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -113,7 +113,7 @@ describe('Object To GCode functionality', () => {
         t: 0,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -131,7 +131,7 @@ describe('Object To GCode functionality', () => {
         s: 0,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -158,7 +158,7 @@ describe('Object To GCode functionality', () => {
         x: 1,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -184,7 +184,7 @@ describe('Object To GCode functionality', () => {
         x: -1,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -214,7 +214,7 @@ describe('Object To GCode functionality', () => {
         x: -0.1,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -252,7 +252,7 @@ describe('Object To GCode functionality', () => {
         x: 0.1,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -274,7 +274,7 @@ describe('Object To GCode functionality', () => {
         t: 0,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -294,7 +294,7 @@ describe('Object To GCode functionality', () => {
         z: -1,
       },
       comment: undefined,
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -314,7 +314,7 @@ describe('Object To GCode functionality', () => {
         z: 7.89,
       },
       comment: ' comment string',
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -334,7 +334,7 @@ describe('Object To GCode functionality', () => {
         z: 7.89,
       },
       comment: ' comment string; more comment',
-      metaComment: {
+      commentTag: {
         command: undefined,
         args: {},
       },
@@ -343,13 +343,13 @@ describe('Object To GCode functionality', () => {
     assert.deepEqual(result, expected);
   });
 
-  it('should be able to process a command with a checkpoint metacomment', () => {
+  it('should be able to process a command with a checkpoint commentTag', () => {
     const result = gcodeToObject('; <<<CHECKPOINT>>> bot1 : 19490');
     const expected = {
       command: undefined,
       args: {},
       comment: ' <<<CHECKPOINT>>> bot1 : 19490',
-      metaComment: {
+      commentTag: {
         command: 'checkpoint',
         args: {
           bot1: 19490,
@@ -360,13 +360,13 @@ describe('Object To GCode functionality', () => {
     assert.deepEqual(result, expected);
   });
 
-  it('should be able to process a command with a precursor metacomment', () => {
+  it('should be able to process a command with a precursor commentTag', () => {
     const result = gcodeToObject('  ; <<<PRECURSOR>>> bot2 : 19949');
     const expected = {
       command: undefined,
       args: {},
       comment: ' <<<PRECURSOR>>> bot2 : 19949',
-      metaComment: {
+      commentTag: {
         command: 'precursor',
         args: {
           bot2: 19949,
@@ -377,13 +377,13 @@ describe('Object To GCode functionality', () => {
     assert.deepEqual(result, expected);
   });
 
-  it('should be able to process a command with a dry metacomment', () => {
+  it('should be able to process a command with a dry commentTag', () => {
     const result = gcodeToObject('; <<<DRY>>> TRUE');
     const expected = {
       command: undefined,
       args: {},
       comment: ' <<<DRY>>> TRUE',
-      metaComment: {
+      commentTag: {
         command: 'dry',
         args: {
           dry: true,
@@ -394,13 +394,13 @@ describe('Object To GCode functionality', () => {
     assert.deepEqual(result, expected);
   });
 
-  it('should be able to process a command with a layer metacomment', () => {
+  it('should be able to process a command with a layer commentTag', () => {
     const result = gcodeToObject('; <<<LAYER>>> 1666');
     const expected = {
       command: undefined,
       args: {},
       comment: ' <<<LAYER>>> 1666',
-      metaComment: {
+      commentTag: {
         command: 'layer',
         args: {
           layer: 1666,
@@ -411,13 +411,13 @@ describe('Object To GCode functionality', () => {
     assert.deepEqual(result, expected);
   });
 
-  it('should be able to process a command with an x entry metacomment', () => {
+  it('should be able to process a command with an x entry commentTag', () => {
     const result = gcodeToObject('; <<<X ENTRY>>> 36.6829');
     const expected = {
       command: undefined,
       args: {},
       comment: ' <<<X ENTRY>>> 36.6829',
-      metaComment: {
+      commentTag: {
         command: 'xEntry',
         args: {
           xEntry: 36.6829,
