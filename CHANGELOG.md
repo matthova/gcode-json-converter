@@ -21,3 +21,6 @@
 
 ## v1.0.1 (2017-04-18)
   Exporting gcodeToObject as default
+
+## v1.1.0 (2017-04-18)
+  Added ability to pass a "precision" flag when converting from an object back to gcode
