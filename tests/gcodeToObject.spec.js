@@ -427,4 +427,38 @@ describe('Object To GCode functionality', () => {
 
     assert.deepEqual(result, expected);
   });
+
+  it('should create a boolean TRUE value, if no params are passed with the comment tag command', () => {
+    const result = gcodeToObject('; <<<PAUSE>>>');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: ' <<<PAUSE>>>',
+      commentTag: {
+        command: 'pause',
+        args: {
+          pause: true,
+        },
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  it('should not care about spaces prior to the comment tag', () => {
+    const result = gcodeToObject(';<<<PAUSE>>>');
+    const expected = {
+      command: undefined,
+      args: {},
+      comment: '<<<PAUSE>>>',
+      commentTag: {
+        command: 'pause',
+        args: {
+          pause: true,
+        },
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
 });
