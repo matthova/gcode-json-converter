@@ -24,3 +24,6 @@
 
 ## v1.1.0 (2017-04-18)
   Added ability to pass a "precision" flag when converting from an object back to gcode
+
+## v1.2.0 (2017-04-18)
+  Added ability to pass comment tags commands without any additional args
