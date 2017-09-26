@@ -27,3 +27,6 @@
 
 ## v1.2.0 (2017-04-18)
   Added ability to pass comment tags commands without any additional args
+
+## v1.2.1 (2017-09-26)
+  Compiling to es5 for compatability
