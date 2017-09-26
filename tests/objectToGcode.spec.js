@@ -1,8 +1,8 @@
 /* global describe, it */
 
 const assert = require('chai').assert;
-const gcodeToObject = require('../index').gcodeToObject;
-const objectToGcode = require('../index').objectToGcode;
+const gcodeToObject = require('../dist/index').gcodeToObject;
+const objectToGcode = require('../dist/index').objectToGcode;
 
 describe('GCode Parser', () => {
   it('Should throw an error when you ask to parse something other than a string', () => {

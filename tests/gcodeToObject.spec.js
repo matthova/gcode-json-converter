@@ -1,7 +1,7 @@
 /* global describe, it */
 
 const assert = require('chai').assert;
-const gcodeToObject = require('../index').gcodeToObject;
+const gcodeToObject = require('../dist/index').gcodeToObject;
 
 describe('Object To GCode functionality', () => {
   it('Should throw an error if the input arg is not an object', () => {
